@@ -1,0 +1,74 @@
+# ─────────────────────────────────────────────────────────────
+# DEPENDENCIES (Never commit these large download folders)
+# ─────────────────────────────────────────────────────────────
+node_modules/
+jspm_packages/
+web_modules/
+.pnpm-store/
+
+# ─────────────────────────────────────────────────────────────
+# ENVIRONMENT VARIABLES & SECRETS (Contains sensitive API keys)
+# ─────────────────────────────────────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+!.env.example
+
+# ─────────────────────────────────────────────────────────────
+# BUILD OUTPUTS & CACHES
+# ─────────────────────────────────────────────────────────────
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+.cache/
+.parcel-cache/
+.svelte-kit/
+.turbo/
+*.tsbuildinfo
+
+# ─────────────────────────────────────────────────────────────
+# LOGS & DIAGNOSTICS
+# ─────────────────────────────────────────────────────────────
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# ─────────────────────────────────────────────────────────────
+# TESTING & COVERAGE
+# ─────────────────────────────────────────────────────────────
+coverage/
+*.lcov
+.nyc_output
+.jest/
+
+# ─────────────────────────────────────────────────────────────
+# SYSTEM & EDITOR FILES (OS-specific and local IDE configs)
+# ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# ─────────────────────────────────────────────────────────────
+# MISCELLANEOUS
+# ─────────────────────────────────────────────────────────────
+.eslintcache
+.stylelintcache
+.node_repl_history
+*.tgz
