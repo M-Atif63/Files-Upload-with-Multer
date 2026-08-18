@@ -1,49 +1,51 @@
-const express = require('express')
+const express = require("express")
 const app = express()
-exports.app = app
-const multer = require('multer')
+const multer = require("multer")
 const path = require('path')
-const dotenv = require('dotenv')
-const { log, error } = require('console')
-const { MIMEType } = require('util')
-dotenv.config()
-app.set('view engine', 'ejs')
+
+app.set("view engine", "ejs")
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-const store = multer.diskStorage({
+
+
+const storage = multer.diskStorage({
     destination(req, file, cb) {
-        cb(null, './Files')
+        cb(null, './uploads')
     },
     filename(req, file, cb) {
         const newFileName = Date.now() + path.extname(file.originalname)
         cb(null, newFileName)
     },
 })
-function fileFilter(req, file, cb){
-    if (file.mimeType.startsWith('image/')){
+
+const fileFilter = (req,file,cb) => {
+    if(file.mimetype == "image/png" || file.mimetype == "image/jpeg"){
         cb(null,true)
-    } else {
-        cb(new Error('Only images are allowed'))
+    }else{
+        cb(new Error("Only png & jpeg Images are allowed"),false)
     }
-}
     
+}
+
 const upload = multer({
-    store: store,
+    storage,
     limits: {
-        filesize: 1025 * 1024 * 5
+        fileSize: 1024 * 1024 * 3
     },
-    fileFilter,
+    fileFilter
 })
 
-app.get('/upload-file', (req, res) => {
-    res.render('fileUpload')
+app.get('/',(req,res)=>{
+    res.render("fileUpload")
+    // res.send("hello world")
 })
-app.post('/upload-file', upload.single('filename'), (req, res) => {
+
+app.post('/',upload.single("field1"),(req,res)=>{
     res.send(req.file)
 })
 
-const port = process.env.PORT;
+const port = 4000
 app.listen(port, () => {
-    console.log(`Port is running on ${port}`);
+    console.log("server is running at post " + port)
 })
