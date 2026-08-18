@@ -45,11 +45,10 @@ const upload = multer({
 
 app.get('/',(req,res)=>{
     res.render("fileUpload")
-    // res.send("hello world")
 })
 
-app.post('/',upload.single("field1"),(req,res)=>{
-    res.send(req.file)
+app.post('/',upload.fields([{name:"field1",maxCount:1},{ name: 'field2', maxCount: 1},{ name: 'field3', maxCount: 1}]),(req,res)=>{
+    res.send(req.files)
 })
 
 const port = 4000
